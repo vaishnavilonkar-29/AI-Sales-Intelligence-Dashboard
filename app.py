@@ -184,7 +184,16 @@ hr {
 # =========================================================
 
 BASE_DIR = Path(__file__).resolve().parent
-DATA_PATH = BASE_DIR / "data" / "cleaned_sales_data.csv"
+
+# Use the original dataset locally and the sample dataset online.
+SAMPLE_DATA_PATH = BASE_DIR / "data" / "sample_sales_data.csv"
+LOCAL_DATA_PATH = BASE_DIR / "data" / "cleaned_sales_data.csv"
+
+DATA_PATH = (
+    SAMPLE_DATA_PATH
+    if SAMPLE_DATA_PATH.exists()
+    else LOCAL_DATA_PATH
+)
 
 
 @st.cache_data
